@@ -60,7 +60,7 @@ export function SignIn() {
                 <VStack flex={1} px={10} pb={16}>
                     <Center mt={8}>
                         <Heading color="gray.100" fontSize="xl" mb={6} fontFamily="heading" >
-                            Acesse sua conta
+                            Login
                         </Heading>
                         <Controller
                             control={control}
@@ -68,12 +68,11 @@ export function SignIn() {
                             rules={{ required: 'Informe o e-mail' }}
                             render={({ field: { onChange } }) => (
                                 <Input
-                                    placeholder="E-mail"
+                                    title='Nome'
                                     keyboardType="email-address"
                                     onChangeText={onChange}
                                     errorMessage={errors.email?.message}
                                     autoCapitalize="none"
-                                    InputLeftElement={<User size={20} color="white" style={{ marginLeft: 8 }} />}
                                 />
                             )}
                         />
@@ -84,11 +83,10 @@ export function SignIn() {
                             rules={{ required: 'Informe a senha' }}
                             render={({ field: { onChange } }) => (
                                 <Input
+                                    title='Senha'
                                     secureTextEntry
-                                    placeholder="Senha"
                                     onChangeText={onChange}
                                     errorMessage={errors.password?.message}
-                                    InputLeftElement={<Lock size={20} color="white" style={{ marginLeft: 8 }} />}
                                 />
                             )}
                         />

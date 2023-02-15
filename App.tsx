@@ -5,24 +5,30 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
+import { LinearGradient } from 'expo-linear-gradient'
 
 import { Routes } from "./src/routes";
 
 //import { AuthContextProvider } from "@contexts/AuthContext";
 
 import { THEME } from "./src/theme";
-import { Loading } from "@components/Loading";
+import { Loading } from "@components/Loading"
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+  const config = {
+    dependencies: {
+      'linear-gradient': LinearGradient
+    }
+  }
   return (
-    <NativeBaseProvider theme={THEME}>
+    <NativeBaseProvider theme={THEME} config={config}>
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />
-        {fontsLoaded ? <Routes /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </NativeBaseProvider>
   );
 }

@@ -1,7 +1,7 @@
 import { Button } from "@components/Button";
 import { Input } from "@components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { Center, CheckIcon, FormControl, Heading, Progress, Radio, ScrollView, Select, Text, VStack, WarningOutlineIcon } from "native-base";
 import { useState } from "react";
@@ -27,7 +27,7 @@ type FormDataProps = {
 });
  */
 export function ThirdRegistration() {
-
+    const { colors } = useTheme()
     const [occupation, setOccupation] = useState(''); //radio group
     const [civilStatus, setCivilStatus] = useState('');
 
@@ -42,14 +42,14 @@ export function ThirdRegistration() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1 }}
                 showsVerticalScrollIndicator={false}
             >
                 <VStack p={8} flex={1}>
                     <Progress bg="gray.100" mt={8} _filledTrack={{
-                        bg: "green.500"
+                        bg: "blue.500"
                     }} value={60}
                     />
                     <Text
@@ -83,7 +83,8 @@ export function ThirdRegistration() {
                         accessibilityLabel="Estado civil"
                         placeholder="Estado Civil"
                         placeholderTextColor="gray.200"
-                        borderColor="green.500"
+                        bg="gray.500"
+                        borderBottomColor="blue.300"
                         color="white"
                         fontSize="md"
                         _selectedItem={{
@@ -111,7 +112,7 @@ export function ThirdRegistration() {
                                 name="wifeName"
                                 render={({ field: { onChange, value } }) => (
                                     <Input
-                                        placeholder="Nome"
+                                        title="Nome"
                                         onChangeText={onChange}
                                         value={value}
                                     //errorMessage={errors.street?.message}
@@ -124,7 +125,7 @@ export function ThirdRegistration() {
                                 name="wifeEmail"
                                 render={({ field: { onChange, value } }) => (
                                     <Input
-                                        placeholder="Email"
+                                        title="Email"
                                         onChangeText={onChange}
                                         value={value}
                                     //errorMessage={errors.street?.message}
@@ -137,7 +138,7 @@ export function ThirdRegistration() {
                                 name="wifePhone"
                                 render={({ field: { onChange, value } }) => (
                                     <Input
-                                        placeholder="Celular"
+                                        title="Celular"
                                         onChangeText={onChange}
                                         value={value}
                                     //errorMessage={errors.street?.message}
@@ -150,7 +151,7 @@ export function ThirdRegistration() {
                                 name="wifeCpf"
                                 render={({ field: { onChange, value } }) => (
                                     <Input
-                                        placeholder="CPF"
+                                        title="CPF"
                                         onChangeText={onChange}
                                         value={value}
                                     //errorMessage={errors.street?.message}
@@ -172,7 +173,7 @@ export function ThirdRegistration() {
                         <Radio.Group
                             name="myRadioGroup"
                             accessibilityLabel="favorite number"
-                            colorScheme="green"
+                            colorScheme="lightBlue"
                             value={occupation}
                             onChange={nextValue => {
                                 setOccupation(nextValue);
@@ -218,7 +219,7 @@ export function ThirdRegistration() {
 
                     <Button
                         title="Continue para desbloquear mais serviços"
-                        mt={4}
+                        textSize="md"
                         onPress={handleSecondRegister}
                     />
                 </VStack>

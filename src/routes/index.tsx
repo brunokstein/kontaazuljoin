@@ -10,7 +10,7 @@ export function Routes() {
     //const { user, isLoadingUserStorageData } = useAuth();
 
     const theme = DefaultTheme;
-    theme.colors.background = colors.gray[700];
+    theme.colors.background = colors.white;
 
     /* if (isLoadingUserStorageData) {
         return <Loading />
@@ -19,7 +19,7 @@ export function Routes() {
     return (
         <Box flex={1} bg="gray.700">
             <NavigationContainer theme={theme}>
-               <AuthRoutes />
+                <AuthRoutes />
             </NavigationContainer>
         </Box>
     );

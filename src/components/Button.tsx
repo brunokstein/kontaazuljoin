@@ -1,32 +1,35 @@
-import { Box, Button as ButtonNativeBase, IButtonProps, Text } from 'native-base';
-import { TouchableOpacity } from 'react-native';
+import { Box, Text } from 'native-base';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
-type Props = IButtonProps & {
+type Props = TouchableOpacityProps & {
     title: string;
-    variant?: 'solid' | 'outline';
+    width?: number;
+    textSize: string;
 }
 
-export function Button({ title, variant = 'solid', ...rest }: Props) {
+export function Button({ title, width, textSize, ...rest }: Props) {
     return (
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} {...rest}>
             <Box bg={{
                 linearGradient: {
                     colors: ['blue.300', 'blue.500'],
                     start: [0, 0],
                     end: [1, 0]
                 }
-            }} 
-            w={280}
-            px={2}
-            py={1}
-            rounded={8} 
-            _text={{
-                fontSize: 'md',
-                fontFamily:"heading",
-                color: 'white',
-                textAlign: 'center'
-            }}>
-               Entrar
+            }}
+                w={width}
+                py={2}
+                px={4}
+                rounded={8}
+            >
+                <Text
+                    fontSize={textSize}
+                    fontFamily="heading"
+                    color="white"
+                    textAlign="center"
+                >
+                    {title}
+                </Text>
             </Box>
         </TouchableOpacity>
     );

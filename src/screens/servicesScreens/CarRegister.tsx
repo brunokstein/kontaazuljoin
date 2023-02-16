@@ -57,13 +57,13 @@ export function CarRegister() {
                                     name="plate"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Placa"
+                                            title="Placa"
                                             fontSize="sm"
                                             onChangeText={onChange}
                                             value={value}
                                             //errorMessage={errors.orgaoExpedidor?.message}
                                             w={145}
-                                            InputRightElement={<Pressable onPress={handleGetVehicleInfo}><MagnifyingGlass size={20} color="white" style={{marginRight: 8}} /></Pressable>}
+                                            InputRightElement={<Pressable onPress={handleGetVehicleInfo}><MagnifyingGlass size={20} color="white" style={{ marginRight: 8 }} /></Pressable>}
                                         />
                                     )}
                                 />
@@ -75,7 +75,7 @@ export function CarRegister() {
                                     name="carBrand"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Marca"
+                                            title="Marca"
                                             onChangeText={onChange}
                                             value={value}
                                             //errorMessage={errors.state?.message}
@@ -92,7 +92,7 @@ export function CarRegister() {
                                     name="carModel"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Modelo"
+                                            title="Modelo"
                                             fontSize="sm"
                                             onChangeText={onChange}
                                             value={value}
@@ -109,7 +109,7 @@ export function CarRegister() {
                                     name="manufactureYear"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Ano Fabricação"
+                                            title="Ano Fabricação"
                                             onChangeText={onChange}
                                             value={value}
                                             //errorMessage={errors.state?.message}
@@ -126,7 +126,7 @@ export function CarRegister() {
                                     name="modelYear"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Ano Modelo"
+                                            title="Ano Modelo"
                                             fontSize="sm"
                                             onChangeText={onChange}
                                             value={value}
@@ -143,7 +143,7 @@ export function CarRegister() {
                                     name="fipeValue"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Valor da Fipe"
+                                            title="Valor da Fipe"
                                             onChangeText={onChange}
                                             value={value}
                                             //errorMessage={errors.state?.message}
@@ -160,7 +160,7 @@ export function CarRegister() {
                                     name="km"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Quilometragem"
+                                            title="Quilometragem"
                                             fontSize="sm"
                                             onChangeText={onChange}
                                             value={value}
@@ -177,7 +177,7 @@ export function CarRegister() {
                                     name="state"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Estado"
+                                            title="Estado"
                                             onChangeText={onChange}
                                             value={value}
                                             //errorMessage={errors.state?.message}
@@ -209,7 +209,7 @@ export function CarRegister() {
                         </VStack>
 
                     </VStack>
-                    <Button title="Solicitar serviço" />
+                    <Button textSize="md" title="Solicitar serviço" />
                 </VStack>
             </ScrollView>
         </SafeAreaView>

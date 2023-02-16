@@ -3,7 +3,9 @@ import { Input } from "@components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
-import { Center, HStack, Heading, Progress, ScrollView, Text, VStack } from "native-base";
+import { Center, HStack, Heading, Modal, Progress, ScrollView, Text, VStack, useTheme } from "native-base";
+import { Car } from "phosphor-react-native";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as yup from "yup";
@@ -26,7 +28,8 @@ const fourthRegistrationSchema = yup.object({
 
 
 export function FourthRegistration() {
-
+    const { colors } = useTheme()
+    const [showModal, setShowModal] = useState(false);
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
         resolver: yupResolver(fourthRegistrationSchema)
     });
@@ -38,14 +41,14 @@ export function FourthRegistration() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1 }}
                 showsVerticalScrollIndicator={false}
             >
                 <VStack p={8} flex={1}>
                     <Progress bg="gray.100" mt={8} _filledTrack={{
-                        bg: "green.500"
+                        bg: "blue.500"
                     }} value={80}
                     />
                     <Text
@@ -70,7 +73,7 @@ export function FourthRegistration() {
                             name="job"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Função"
+                                    title="Função"
                                     keyboardType="number-pad"
                                     onChangeText={onChange}
                                     value={value}
@@ -84,7 +87,7 @@ export function FourthRegistration() {
                             name="jobTime"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Tempo de serviço"
+                                    title="Tempo de serviço"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.jobTime?.message}
@@ -96,19 +99,19 @@ export function FourthRegistration() {
                             name="income"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Renda"
+                                    title="Renda"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.income?.message}
                                 />
                             )}
                         />
-                          <Controller
+                        <Controller
                             control={control}
                             name="familyIncome"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Renda familiar"
+                                    title="Renda familiar"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.familyIncome?.message}
@@ -120,7 +123,7 @@ export function FourthRegistration() {
                             name="momName"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Nome da mãe"
+                                    title="Nome da mãe"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.momName?.message}
@@ -130,9 +133,51 @@ export function FourthRegistration() {
                     </Center>
 
                     <Button
+                        textSize="md"
                         title="Finalizar o cadastro"
-                        onPress={handleFourthRegister}
+                        onPress={() => setShowModal(true)}
                     />
+
+                    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                        <Modal.Content maxWidth="400px">
+                            <Modal.Header>Parabéns, voce concluiu 100% do seu perfil!</Modal.Header>
+                            <Modal.Body>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button textSize="md" title="Ir para a Home" onPress={handleFourthRegister} />
+                            </Modal.Footer>
+                        </Modal.Content>
+                    </Modal>
                 </VStack>
 
             </ScrollView>

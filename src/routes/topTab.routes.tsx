@@ -1,4 +1,4 @@
-import { useTheme, Heading, HStack } from 'native-base';
+import { useTheme, Heading, HStack, Image } from 'native-base';
 import { createMaterialTopTabNavigator, MaterialTopTabNavigationProp } from '@react-navigation/material-top-tabs';
 import { OnGoing } from '@screens/tabScreens/OnGoing';
 import { Order } from '@screens/tabScreens/Order';
@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Bell, User } from 'phosphor-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from './app.routes';
+import logoPng from '@assets/logo.png';
 
 type TopTabRoutes = {
     order: undefined;
@@ -33,31 +34,35 @@ export function TopTabRoutes() {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <HStack px={6} justifyContent="space-between" alignItems="center" mt={6} mb={4}>
-                <Heading
-                    fontSize="lg"
-                    color="white"
-                >
-                    Konta Azul JoinAds
-                </Heading>
+            <HStack bg="white" justifyContent="space-between" alignItems="center" p={6}>
+                <HStack alignItems="center" space={2}>
+                    <Image source={logoPng} w={10} h={8} resizeMode="contain" alt='' />
+                    <Heading
+                        fontSize="lg"
+                        color="gray.700"
+                    >
+                        Konta Azul JoinAds
+                    </Heading>
+                </HStack>
                 <HStack>
                     <TouchableOpacity onPress={handleGoProfile}>
-                        <User size={24} color={colors.white} />
+                        <User size={24} color={colors.gray[700]} />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={handleGoNotifications}>
-                        <Bell size={24} color={colors.white} style={{ marginLeft: 12 }} />
+                        <Bell size={24} color={colors.gray[700]} style={{ marginLeft: 12, marginRight: 8 }} />
                     </TouchableOpacity>
                 </HStack>
             </HStack>
             <Navigator screenOptions={{
-                tabBarActiveTintColor: colors.green[500],
+                tabBarActiveTintColor: colors.blue[400],
                 tabBarInactiveTintColor: colors.gray[300],
                 tabBarStyle: {
-                    backgroundColor: colors.white,
-                    borderRadius: 6
+                    backgroundColor: colors.gray[700],
+                    borderTopRightRadius: 20,
+                    borderTopLeftRadius: 20,
                 },
                 tabBarIndicatorStyle: {
-                    backgroundColor: colors.green[500],
+                    backgroundColor: colors.blue[900],
                     borderRadius: 8,
                     width: '31%',
                     left: "1%",

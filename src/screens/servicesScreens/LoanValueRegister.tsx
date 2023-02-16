@@ -48,7 +48,7 @@ export function LoanValueRegister() {
                             name="loanValue"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Valor do empréstimo"
+                                    title="Valor do empréstimo"
                                     onChangeText={onChange}
                                     keyboardType="number-pad"
                                     value={value}
@@ -57,7 +57,7 @@ export function LoanValueRegister() {
                             )}
                         />
                     </VStack>
-                    <Button title="Solicitar serviço" />
+                    <Button textSize="md" title="Solicitar serviço" />
                 </VStack>
             </ScrollView>
         </SafeAreaView>

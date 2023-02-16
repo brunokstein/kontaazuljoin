@@ -12,6 +12,7 @@ import { useAuth } from '@hooks/useAuth'; */
 //import { AppError } from '@utils/AppError';
 import { Button } from '@components/Button';
 import { Input } from '@components/Input';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 type FormDataProps = {
     name: string;
@@ -74,99 +75,106 @@ export function SignUp() {
       } */
 
     return (
-        <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            showsVerticalScrollIndicator={false}
-        >
-            <VStack flex={1} px={10} pb={16}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView
+                contentContainerStyle={{ flexGrow: 1 }}
+                showsVerticalScrollIndicator={false}
+            >
+                <VStack bg="white" p={4}>
 
-                <Center>
-                    <Heading color="gray.100" fontSize="xl" mt={10} mb={6} fontFamily="heading">
-                        Crie sua conta
-                    </Heading>
+                </VStack>
+                <VStack flex={1} px={10} pb={16} bg="gray.700" borderTopRightRadius={12} borderTopLeftRadius={12}>
 
-                    <Controller
-                        control={control}
-                        name="name"
-                        render={({ field: { onChange, value } }) => (
-                            <Input
-                                placeholder="Nome completo"
-                                onChangeText={onChange}
-                                value={value}
-                                errorMessage={errors.name?.message}
-                            />
-                        )}
-                    />
+                    <Center>
+                        <Heading color="white" fontSize="xl" mt={10} mb={6} fontFamily="heading">
+                            Crie sua conta
+                        </Heading>
 
-                    <Controller
-                        control={control}
-                        name="email"
-                        render={({ field: { onChange, value } }) => (
-                            <Input
-                                placeholder="E-mail"
-                                keyboardType="email-address"
-                                autoCapitalize="none"
-                                onChangeText={onChange}
-                                value={value}
-                                errorMessage={errors.email?.message}
-                            />
-                        )}
-                    />
+                        <Controller
+                            control={control}
+                            name="name"
+                            render={({ field: { onChange, value } }) => (
+                                <Input
+                                    title="Nome completo"
+                                    onChangeText={onChange}
+                                    value={value}
+                                    errorMessage={errors.name?.message}
+                                />
+                            )}
+                        />
 
-                    <Controller
-                        control={control}
-                        name="phone"
-                        render={({ field: { onChange, value } }) => (
-                            <Input
-                                placeholder="Celular - Ex: 45998764539"
-                                keyboardType="number-pad"
-                                autoCapitalize="none"
-                                onChangeText={onChange}
-                                value={value}
-                                errorMessage={errors.phone?.message}
-                            />
-                        )}
-                    />
+                        <Controller
+                            control={control}
+                            name="email"
+                            render={({ field: { onChange, value } }) => (
+                                <Input
+                                    title="E-mail"
+                                    keyboardType="email-address"
+                                    autoCapitalize="none"
+                                    onChangeText={onChange}
+                                    value={value}
+                                    errorMessage={errors.email?.message}
+                                />
+                            )}
+                        />
 
-                    <Controller
-                        control={control}
-                        name="password"
-                        render={({ field: { onChange, value } }) => (
+                        <Controller
+                            control={control}
+                            name="phone"
+                            render={({ field: { onChange, value } }) => (
+                                <Input
+                                    title="Celular"
+                                    keyboardType="number-pad"
+                                    autoCapitalize="none"
+                                    onChangeText={onChange}
+                                    value={value}
+                                    errorMessage={errors.phone?.message}
+                                />
+                            )}
+                        />
 
-                            <Input
-                                placeholder='Senha'
-                                secureTextEntry
-                                onChangeText={onChange}
-                                value={value}
-                                errorMessage={errors.password?.message}
-                            />
-                        )}
-                    />
+                        <Controller
+                            control={control}
+                            name="password"
+                            render={({ field: { onChange, value } }) => (
 
-                    <Controller
-                        control={control}
-                        name="password_confirm"
-                        render={({ field: { onChange, value } }) => (
+                                <Input
+                                    title='Senha'
+                                    secureTextEntry
+                                    onChangeText={onChange}
+                                    value={value}
+                                    errorMessage={errors.password?.message}
+                                />
+                            )}
+                        />
 
-                            <Input
-                                placeholder='Confirme a senha'
-                                secureTextEntry
-                                onChangeText={onChange}
-                                value={value}
-                                onSubmitEditing={handleSubmit(handleSignUp)}
-                                returnKeyType="send"
-                                errorMessage={errors.password_confirm?.message}
-                            />
-                        )}
-                    />
+                        <Controller
+                            control={control}
+                            name="password_confirm"
+                            render={({ field: { onChange, value } }) => (
 
-                    <Button
-                        title="Criar e acessar"
-                        onPress={handleSignUp}
+                                <Input
+                                    title='Confirme a senha'
+                                    secureTextEntry
+                                    onChangeText={onChange}
+                                    value={value}
+                                    onSubmitEditing={handleSubmit(handleSignUp)}
+                                    returnKeyType="send"
+                                    errorMessage={errors.password_confirm?.message}
+                                />
+                            )}
+                        />
+
+                        <Button
+                            title="Criar e acessar"
+                            textSize="md"
+                            width={280}
+                            onPress={handleSignUp}
                         //isLoading={isLoading}
-                    />
-                </Center>
-            </VStack>
-        </ScrollView>
+                        />
+                    </Center>
+                </VStack>
+            </ScrollView>
+        </SafeAreaView>
     );
 }

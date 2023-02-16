@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export function Complete() {
     return (
-        <Center flex={1}>
+        <Center flex={1} bgColor="gray.700">
             <Text color="white" fontFamily="heading" fontSize="lg">
                Nao tem nenhum serviço concluído.
             </Text>

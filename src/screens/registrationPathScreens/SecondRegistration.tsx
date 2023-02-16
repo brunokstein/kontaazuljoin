@@ -3,12 +3,13 @@ import { Input } from "@components/Input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
-import { Center, HStack, Heading, Pressable, Progress, ScrollView, Text, VStack } from "native-base";
+import { Center, HStack, Heading, Modal, Pressable, Progress, ScrollView, Text, VStack, useTheme } from "native-base";
 import { useForm, Controller } from "react-hook-form";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native";
 import * as yup from "yup";
-import { MagnifyingGlass } from "phosphor-react-native";
+import { Car, MagnifyingGlass } from "phosphor-react-native";
+import { useState } from "react";
 
 type FormDataProps = {
     cep: string;
@@ -32,7 +33,8 @@ const secondRegistrationSchema = yup.object({
 
 
 export function SecondRegistration() {
-
+    const { colors } = useTheme()
+    const [showModal, setShowModal] = useState(false);
     const { control, handleSubmit, formState: { errors } } = useForm<FormDataProps>({
         resolver: yupResolver(secondRegistrationSchema)
     });
@@ -48,14 +50,14 @@ export function SecondRegistration() {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1 }}
                 showsVerticalScrollIndicator={false}
             >
                 <VStack p={8} flex={1}>
                     <Progress bg="gray.100" mt={8} _filledTrack={{
-                        bg: "green.500"
+                        bg: "blue.500"
                     }} value={40}
                     />
                     <Text
@@ -80,7 +82,7 @@ export function SecondRegistration() {
                             name="cep"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="CEP"
+                                    title="CEP"
                                     keyboardType="number-pad"
                                     onChangeText={onChange}
                                     value={value}
@@ -95,7 +97,7 @@ export function SecondRegistration() {
                             name="street"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Endereço"
+                                    title="Endereço"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.street?.message}
@@ -109,7 +111,7 @@ export function SecondRegistration() {
                                     name="streetNumber"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Número"
+                                            title="Número"
                                             onChangeText={onChange}
                                             keyboardType="number-pad"
                                             value={value}
@@ -126,7 +128,7 @@ export function SecondRegistration() {
                                     name="complement"
                                     render={({ field: { onChange, value } }) => (
                                         <Input
-                                            placeholder="Complemento"
+                                            title="Complemento"
                                             onChangeText={onChange}
                                             value={value}
                                             errorMessage={errors.complement?.message}
@@ -142,7 +144,7 @@ export function SecondRegistration() {
                             name="district"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Bairro"
+                                    title="Bairro"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.district?.message}
@@ -154,7 +156,7 @@ export function SecondRegistration() {
                             name="city"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Cidade"
+                                    title="Cidade"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.city?.message}
@@ -166,7 +168,7 @@ export function SecondRegistration() {
                             name="state"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Estado"
+                                    title="Estado"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.state?.message}
@@ -176,18 +178,56 @@ export function SecondRegistration() {
                     </Center>
 
                     <Button
+                        textSize="md"
                         title="Continue para desbloquear mais serviços"
-                        onPress={handleSecondRegister}
+                        onPress={() => setShowModal(true)}
                     />
-                    <TouchableOpacity onPress={handleGoHome}>
-                        <Text
-                            color="white"
-                            alignSelf="center"
-                            mt={2}
-                        >
-                            Ir para home
-                        </Text>
-                    </TouchableOpacity>
+                    <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+                        <Modal.Content maxWidth="400px">
+                            <Modal.CloseButton />
+                            <Modal.Header>Serviços liberados</Modal.Header>
+                            <Modal.Body>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                                <HStack alignItems="center" backgroundColor="white" px={8} py={2} mt={2}>
+                                    <Car size={26} color={colors.gray[700]} />
+                                    <Text px={2} flex={1} fontSize="sm" fontFamily="body" color="black">
+                                        Empréstimo para Carro (REFIN)
+                                    </Text>
+                                </HStack>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button textSize="md" title="Continuar com o cadastro" onPress={handleSecondRegister} />
+                                <TouchableOpacity onPress={handleGoHome}>
+                                    <Text>
+                                        Ir para a Home!
+                                    </Text>
+                                </TouchableOpacity>
+                            </Modal.Footer>
+                        </Modal.Content>
+                    </Modal>
                 </VStack>
 
             </ScrollView>

@@ -58,7 +58,7 @@ export function PropertyRegister() {
                             name="propertyValue"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Valor do Imóvel"
+                                    title="Valor do Imóvel"
                                     onChangeText={onChange}
                                     keyboardType="number-pad"
                                     value={value}
@@ -71,7 +71,7 @@ export function PropertyRegister() {
                             name="propertyLoanReason"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="Motivo do empréstimo"
+                                    title="Motivo do empréstimo"
                                     onChangeText={onChange}
                                     value={value}
                                     errorMessage={errors.propertyLoanReason?.message}
@@ -83,7 +83,7 @@ export function PropertyRegister() {
                             name="cep"
                             render={({ field: { onChange, value } }) => (
                                 <Input
-                                    placeholder="CEP"
+                                    title="CEP"
                                     onChangeText={onChange}
                                     keyboardType="number-pad"
                                     value={value}
@@ -182,7 +182,7 @@ export function PropertyRegister() {
                     </VStack>
                     <Button
                         title="Solicitar serviço"
-                        mt={4}
+                        textSize="md"
                         onPress={handleGoRegisterLoanValue}
                     />
                 </VStack>
